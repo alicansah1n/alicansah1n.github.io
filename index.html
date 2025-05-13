@@ -236,7 +236,17 @@
       }
     }
     window.addEventListener('resize', handleResize);
-    window.addEventListener('DOMContentLoaded', handleResize);
+    window.addEventListener('DOMContentLoaded', function() {
+      if (window.innerWidth <= 900) {
+        sidebar.style.display = '';
+        mainContent.style.display = 'none';
+        backToMenuBtn.style.display = 'none';
+      } else {
+        sidebar.style.display = '';
+        mainContent.style.display = '';
+        backToMenuBtn.style.display = 'none';
+      }
+    });
     </script>
 </body>
 </html>
