@@ -161,6 +161,10 @@
       sidebar.style.display = '';
       mainContent.style.display = 'none';
       menuLinks.forEach(l => l.classList.remove('active'));
+      aboutSection.style.display = 'none';
+      servicesSection.style.display = 'none';
+      educationSection.style.display = 'none';
+      contactSection.style.display = 'none';
     }
     function showContentMobile() {
       sidebar.style.display = 'none';
@@ -216,8 +220,15 @@
 
     function handleResize() {
       if (isMobile()) {
-        showMenuMobile();
-        backToMenuBtn.style.display = 'none';
+        if (mainContent.style.display !== 'none') {
+          sidebar.style.display = 'none';
+          mainContent.style.display = '';
+          backToMenuBtn.style.display = '';
+        } else {
+          sidebar.style.display = '';
+          mainContent.style.display = 'none';
+          backToMenuBtn.style.display = 'none';
+        }
       } else {
         sidebar.style.display = '';
         mainContent.style.display = '';
