@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="container">
-        <aside class="sidebar">
+        <aside class="sidebar" id="sidebar">
             <img src="profile.jpeg" class="profile-photo" alt="Ali Can Şahin">
             <h1>Ali Can Şahin</h1>
             <h2 class="subtitle">SOFTWARE ENGINEER</h2>
@@ -28,7 +28,8 @@
                 <a href="https://www.instagram.com/alicansah1n/" target="_blank"><i class="fab fa-instagram"></i> alicansah1n</a>
             </div>
         </aside>
-        <main class="main-content">
+        <main class="main-content" id="mainContent">
+            <button class="back-to-menu" id="backToMenuBtn" style="display:none;"><i class="fas fa-arrow-left"></i> Anasayfaya Dön</button>
             <section class="welcome" id="aboutSection">
                 <span class="welcome-label">WELCOME</span>
                 <h2>ABOUT ME</h2>
@@ -143,62 +144,88 @@
         </main>
     </div>
     <script>
-    // SPA benzeri menü geçişi
     const menuLinks = document.querySelectorAll('.menu a');
     const aboutSection = document.getElementById('aboutSection');
     const servicesSection = document.getElementById('servicesSection');
     const educationSection = document.getElementById('educationSection');
     const contactSection = document.getElementById('contactSection');
+    const sidebar = document.getElementById('sidebar');
+    const mainContent = document.getElementById('mainContent');
+    const backToMenuBtn = document.getElementById('backToMenuBtn');
+
+    function isMobile() {
+      return window.innerWidth <= 900;
+    }
+
+    function showMenuMobile() {
+      sidebar.style.display = '';
+      mainContent.style.display = 'none';
+      menuLinks.forEach(l => l.classList.remove('active'));
+    }
+    function showContentMobile() {
+      sidebar.style.display = 'none';
+      mainContent.style.display = '';
+    }
+
+    function handleMenuClick(link) {
+      menuLinks.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+      if (link.textContent.trim() === 'ABOUT') {
+        aboutSection.style.display = '';
+        servicesSection.style.display = 'none';
+        educationSection.style.display = 'none';
+        contactSection.style.display = 'none';
+      } else if (link.textContent.trim() === 'SKILLS & EXPERIENCE') {
+        aboutSection.style.display = 'none';
+        servicesSection.style.display = '';
+        educationSection.style.display = 'none';
+        contactSection.style.display = 'none';
+      } else if (link.textContent.trim() === 'EDUCATION') {
+        aboutSection.style.display = 'none';
+        servicesSection.style.display = 'none';
+        educationSection.style.display = '';
+        contactSection.style.display = 'none';
+      } else if (link.textContent.trim() === 'CONTACT') {
+        aboutSection.style.display = 'none';
+        servicesSection.style.display = 'none';
+        educationSection.style.display = 'none';
+        contactSection.style.display = '';
+      } else {
+        aboutSection.style.display = '';
+        servicesSection.style.display = 'none';
+        educationSection.style.display = 'none';
+        contactSection.style.display = 'none';
+      }
+    }
+
     menuLinks.forEach(link => {
       link.addEventListener('click', function(e) {
         e.preventDefault();
-        menuLinks.forEach(l => l.classList.remove('active'));
-        this.classList.add('active');
-        if (this.textContent.trim() === 'ABOUT') {
-          aboutSection.style.display = '';
-          servicesSection.style.display = 'none';
-          educationSection.style.display = 'none';
-          contactSection.style.display = 'none';
-        } else if (this.textContent.trim() === 'SKILLS & EXPERIENCE') {
-          aboutSection.style.display = 'none';
-          servicesSection.style.display = '';
-          educationSection.style.display = 'none';
-          contactSection.style.display = 'none';
-        } else if (this.textContent.trim() === 'EDUCATION') {
-          aboutSection.style.display = 'none';
-          servicesSection.style.display = 'none';
-          educationSection.style.display = '';
-          contactSection.style.display = 'none';
-        } else if (this.textContent.trim() === 'CONTACT') {
-          aboutSection.style.display = 'none';
-          servicesSection.style.display = 'none';
-          educationSection.style.display = 'none';
-          contactSection.style.display = '';
-        } else {
-          aboutSection.style.display = '';
-          servicesSection.style.display = 'none';
-          educationSection.style.display = 'none';
-          contactSection.style.display = 'none';
+        handleMenuClick(this);
+        if (isMobile()) {
+          showContentMobile();
+          backToMenuBtn.style.display = '';
         }
       });
     });
-    // Accordion fonksiyonu
-    const eduHeaders = document.querySelectorAll('.edu-header');
-    eduHeaders.forEach(header => {
-      header.addEventListener('click', function() {
-        const body = this.nextElementSibling;
-        const toggle = this.querySelector('.edu-toggle');
-        if (body.style.maxHeight) {
-          body.style.maxHeight = null;
-          toggle.textContent = '+';
-        } else {
-          document.querySelectorAll('.edu-body').forEach(b => b.style.maxHeight = null);
-          document.querySelectorAll('.edu-toggle').forEach(t => t.textContent = '+');
-          body.style.maxHeight = body.scrollHeight + 'px';
-          toggle.textContent = '–';
-        }
-      });
+
+    backToMenuBtn.addEventListener('click', function() {
+      showMenuMobile();
+      backToMenuBtn.style.display = 'none';
     });
+
+    function handleResize() {
+      if (isMobile()) {
+        showMenuMobile();
+        backToMenuBtn.style.display = 'none';
+      } else {
+        sidebar.style.display = '';
+        mainContent.style.display = '';
+        backToMenuBtn.style.display = 'none';
+      }
+    }
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('DOMContentLoaded', handleResize);
     </script>
 </body>
 </html>
