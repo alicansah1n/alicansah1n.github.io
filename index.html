@@ -172,34 +172,31 @@
     }
 
     function handleMenuClick(link) {
-      menuLinks.forEach(l => l.classList.remove('active'));
-      link.classList.add('active');
-      if (link.textContent.trim() === 'ABOUT') {
-        aboutSection.style.display = '';
-        servicesSection.style.display = 'none';
-        educationSection.style.display = 'none';
-        contactSection.style.display = 'none';
-      } else if (link.textContent.trim() === 'SKILLS & EXPERIENCE') {
-        aboutSection.style.display = 'none';
-        servicesSection.style.display = '';
-        educationSection.style.display = 'none';
-        contactSection.style.display = 'none';
-      } else if (link.textContent.trim() === 'EDUCATION') {
-        aboutSection.style.display = 'none';
-        servicesSection.style.display = 'none';
-        educationSection.style.display = '';
-        contactSection.style.display = 'none';
-      } else if (link.textContent.trim() === 'CONTACT') {
-        aboutSection.style.display = 'none';
-        servicesSection.style.display = 'none';
-        educationSection.style.display = 'none';
-        contactSection.style.display = '';
-      } else {
-        aboutSection.style.display = '';
-        servicesSection.style.display = 'none';
-        educationSection.style.display = 'none';
-        contactSection.style.display = 'none';
-      }
+ // Tüm bölümler kapatılırken animasyon sınıfları da temizlenir
+ [aboutSection, servicesSection, educationSection, contactSection].forEach(section => {
+    section.style.display = 'none';
+    section.classList.remove('section-animated');
+  });
+
+  menuLinks.forEach(l => l.classList.remove('active'));
+  link.classList.add('active');
+
+  if (link.textContent.trim() === 'ABOUT') {
+    aboutSection.style.display = '';
+    aboutSection.classList.add('section-animated');
+  } else if (link.textContent.trim() === 'SKILLS & EXPERIENCE') {
+    servicesSection.style.display = '';
+    servicesSection.classList.add('section-animated');
+  } else if (link.textContent.trim() === 'EDUCATION') {
+    educationSection.style.display = '';
+    educationSection.classList.add('section-animated');
+  } else if (link.textContent.trim() === 'CONTACT') {
+    contactSection.style.display = '';
+    contactSection.classList.add('section-animated');
+  } else {
+    aboutSection.style.display = '';
+    aboutSection.classList.add('section-animated');
+  }
     }
 
     menuLinks.forEach(link => {

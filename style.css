@@ -40,7 +40,7 @@ body {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 2rem;
   font-weight: 700;
-  margin: 0 0 6px 0;
+  margin: 8px 0 8px 0;
   letter-spacing: -1px;
   color: #fff;
   text-align: center;
@@ -50,7 +50,7 @@ body {
   font-size: 1.05rem;
   color: #b0b0b8;
   font-weight: 500;
-  margin-bottom: 32px;
+  margin-bottom: 36px;
   text-align: center;
   letter-spacing: 0.5px;
 }
@@ -540,12 +540,12 @@ body {
   .menu {
     flex-direction: row;
     gap: 10px;
-    margin-bottom: 0;
+    margin-bottom: 48px;
     width: auto;
   }
   .menu a {
-    font-size: 0.98rem;
-    padding: 6px 10px;
+    font-size: 1rem;
+    padding: 10px 0;
     width: auto;
   }
   .social {
@@ -662,15 +662,17 @@ body {
   .sidebar {
     flex-direction: column;
     align-items: center;
-    padding: 10px 2vw 6px 2vw;
-    gap: 8px;
+    padding: 40px 2vw 24px 2vw; /* yukarıdan genişlettik */
+    gap: 20px; /* araları açtık */
     background: rgba(24, 26, 31, 0.99);
   }
+  
   .profile-photo {
-    width: 54px;
-    height: 54px;
-    margin-right: 0;
+    width: 150px;
+    height: 150px;
+    margin-bottom: 12px;
   }
+  
   .menu {
     flex-direction: column;
     gap: 6px;
@@ -700,4 +702,55 @@ body {
   .social a i {
     font-size: 1.1em;
   }
+
+
+  .section-animated {
+    animation: slideIn 0.4s ease forwards;
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  
+  @keyframes slideIn {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Sayfa giriş animasyonu */
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.sidebar .profile-photo,
+.sidebar h1,
+.sidebar .subtitle,
+.sidebar .menu,
+.sidebar .social {
+  opacity: 0;
+  transform: translateX(-40px);
+  animation: slideInLeft 0.6s ease forwards;
+}
+
+.sidebar h1 {
+  animation-delay: 0.15s;
+}
+.sidebar .subtitle {
+  animation-delay: 0.3s;
+}
+.sidebar .menu {
+  animation-delay: 0.45s;
+}
+.sidebar .social {
+  animation-delay: 0.6s;
+}
+
+  
 }
