@@ -17,7 +17,7 @@
             <h1>Ali Can Şahin</h1>
             <h2 class="subtitle">SOFTWARE ENGINEER</h2>
             <nav class="menu">
-                <a href="#" class="active">ABOUT</a>
+                <a href="#">ABOUT</a>
                 <a href="#">SKILLS & EXPERIENCE</a>
                 <a href="#">EDUCATION</a>
                 <a href="#">CONTACT</a>
@@ -235,8 +235,13 @@
         backToMenuBtn.style.display = 'none';
       }
     }
-    window.addEventListener('resize', handleResize);
-    window.addEventListener('DOMContentLoaded', handleResize);
-    </script>
+    // 🟢 Burayı güncelledik
+    window.addEventListener('DOMContentLoaded', function () {
+      handleResize(); // mevcut yapı
+      if (isMobile()) {
+        showMenuMobile(); // sadece mobilde ilk başta sidebar göster
+      }
+    });
+</script>
 </body>
 </html>

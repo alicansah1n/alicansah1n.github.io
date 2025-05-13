@@ -76,6 +76,15 @@ body {
   letter-spacing: 0.2px;
   background: transparent;
 }
+
+/* BU KISMI BURAYA EKLE */
+.menu a:link,
+.menu a:visited,
+.menu a:focus,
+.menu a:active {
+  color: #e0e0e0;
+  text-decoration: none;
+}
 .menu a.active, .menu a:hover {
   background: rgba(255,255,255,0.08);
   color: #2b6cb0;
